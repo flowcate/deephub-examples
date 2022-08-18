@@ -1,0 +1,41 @@
+{
+  "apps": [
+    {
+      "name": "delete all trackables",
+      "script": "./deleteTrackables.js",
+      "error_file": "./log/deleteTrackables/err.log",
+      "out_file": "./log/deleteTrackables/out.log",
+      "autorestart": false
+    },
+    {
+      "name": "Product production",
+      "script": "./production.js",
+      "error_file": "./log/production/err.log",
+      "out_file": "./log/production/out.log"
+    },
+    {
+      "name": "shipping trucks",
+      "script": "./shippingTruck.js",
+      "error_file": "./log/shippingTruck/err.log",
+      "out_file": "./log/shippingTruck/out.log"
+    },
+    {
+      "name": "pick trucks",
+      "script": "./pickTruck.js",
+      "error_file": "./log/pickTruck/err.log",
+      "out_file": "./log/pickTruck/out.log"
+    },
+    {
+      "name": "move trucks",
+      "script": "./moveTruck.js",
+      "error_file": "./log/moveTruck/err.log",
+      "out_file": "./log/moveTruck/out.log"
+    },
+    {
+      "name": "storage place",
+      "script": "./storagePlace.js",
+      "error_file": "./log/storagePlace/err.log",
+      "out_file": "./log/storagePlace/out.log"
+    }
+  ]
+}
