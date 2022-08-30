@@ -1,0 +1,17 @@
+{
+  "name": "sparkplug-example",
+  "version": "1.0.0",
+  "description": "that will communicate with a MQTT Server using the sparkplug b protocol.",
+  "main": "connector.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.3.7",
+    "sparkplug-payload": "^1.0.1",
+    "ws": "^8.8.1"
+  }
+}

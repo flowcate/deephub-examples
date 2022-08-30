@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  emqx:
+    image: emqx/emqx:latest
+    restart: always
+    environment:
+      - EMQX_LOADED_PLUGINS="emqx_bridge_mqtt,emqx_recon,emqx_retainer,emqx_management,emqx_dashboard"
+      - EMQX_ADMIN_PASSWORD=brokerpw1
+      - EMQX_NAME=deephub_emqx
+      - EMQX_HOST=127.0.0.1
+    ports:
+      - 18083:18083
+      - 1883:1883
+      # - 8883:8883
+    volumes:
+      - ./mqtt/vol-emqx-data:/opt/emqx/data
+      # - ./mqtt/vol-emqx-etc:/opt/emqx/etc
+      - ./mqtt/vol-emqx-log:/opt/emqx/log
