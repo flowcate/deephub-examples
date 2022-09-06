@@ -34,7 +34,7 @@ Start all processes at once.
 
 ```
 // start all processes
-npm start
+npm run start
 
 // stop all processes
 npm run stop
