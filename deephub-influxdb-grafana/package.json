@@ -1,0 +1,14 @@
+{
+  "name": "influxdb-grafana-example",
+  "version": "1.0.0",
+  "description": "that will communicate with a InfluxDB DB and show locations in grafana.",
+  "main": "connector.js",
+  "type": "module",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.28.0",
+    "ws": "^8.8.1"
+  }
+}

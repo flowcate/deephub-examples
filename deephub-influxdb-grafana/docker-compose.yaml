@@ -1,0 +1,57 @@
+version: "3.5"
+
+services:
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - '8086:8086'
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=flowcate
+      - DOCKER_INFLUXDB_INIT_PASSWORD=jhV~YnkH-{u8qMXB
+      - DOCKER_INFLUXDB_INIT_ORG=flowcate
+      - DOCKER_INFLUXDB_INIT_BUCKET=deephub
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=GhKHzZPXed8jrr3ArUL9QvLDghnayXfdD4BQ8BG
+    networks:
+      - flowcate
+  chronograf:
+    image: chronograf:latest
+    ports:
+      - '18888:8888'
+    volumes:
+      - ./chronograf-storage:/var/lib/chronograf
+    depends_on:
+      - influxdb
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_ORG=flowcate
+      - INFLUXDB_TOKEN=GhKHzZPXed8jrr3ArUL9QvLDghnayXfdD4BQ8BG
+    networks:
+      - flowcate
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+      - ./grafana-provisioning/:/etc/grafana/provisioning
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=flowcate
+      - GF_SECURITY_ADMIN_PASSWORD=&zp~YnkHn>urLh+r
+      - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1s
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_ENABLE_GZIP=true
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/deephub.json
+    networks:
+      - flowcate
+      - deephub-net
+
+networks:
+  flowcate:
+  deephub-net:
+    name: deephub-basic-setup_deephub-net
+    external: true
