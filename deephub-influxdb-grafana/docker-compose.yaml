@@ -32,6 +32,7 @@ services:
     image: grafana/grafana:latest
     ports:
       - '3000:3000'
+    user: '104'
     volumes:
       - ./grafana-storage:/var/lib/grafana
       - ./grafana-provisioning/:/etc/grafana/provisioning
