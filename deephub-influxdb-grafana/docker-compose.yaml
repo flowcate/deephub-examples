@@ -14,27 +14,12 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=GhKHzZPXed8jrr3ArUL9QvLDghnayXfdD4BQ8BG
     networks:
       - flowcate
-  chronograf:
-    image: chronograf:latest
-    ports:
-      - '18888:8888'
-    volumes:
-      - ./chronograf-storage:/var/lib/chronograf
-    depends_on:
-      - influxdb
-    environment:
-      - INFLUXDB_URL=http://influxdb:8086
-      - INFLUXDB_ORG=flowcate
-      - INFLUXDB_TOKEN=GhKHzZPXed8jrr3ArUL9QvLDghnayXfdD4BQ8BG
-    networks:
-      - flowcate
   grafana:
     image: grafana/grafana:latest
     ports:
       - '3000:3000'
     user: '104'
     volumes:
-      - ./grafana-storage:/var/lib/grafana
       - ./grafana-provisioning/:/etc/grafana/provisioning
     depends_on:
       - influxdb
