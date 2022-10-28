@@ -1,5 +1,9 @@
 <h1>DeepHub® usage examples</h1>
 
+The DeepHub® is a lightweight, high-performance locating-middleware, that enables a seamless indoor and outdoor tracking of objects by integrating any locating technology (UWB, BLE, RFID, 5G, etc.) of any vendor through one single modern API.
+
+The DeepHub is the premier implementation of an omlox hub, specified in the open locating standard omlox.
+
 This repository contains many different code examples. They belong to different categories:
 <ul>
 <li>Basic code example</li>
