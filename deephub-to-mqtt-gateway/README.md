@@ -8,8 +8,9 @@ This example is intended to show how quickly you can get data from the DeepHub t
   - DeepHub: http://localhost:8081/deephub/version
   - DeepHub UI: http://localhost:8081/deephub-ui/buildinfo.json
 - You will need [nodejs](https://nodejs.org/) and [docker compose](https://docs.docker.com/compose/install/)
-- Start a system that generates location updates
-  - [example 1](https://github.com/flowcate/deephub-examples/tree/main/deephub-rest-api-basics) or [example 2](https://github.com/flowcate/deephub-examples/tree/main/deephub-warehouse-use-case)
+- Start a system that generates location updates, e.g. one of the examples provided within this repo (parallel directory):
+  - "deephub-rest-api-basics" or
+  - "deephub-warehouse-use-case"
 
 ## Install node Modules
 
