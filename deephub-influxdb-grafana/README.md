@@ -8,8 +8,10 @@ This example demonstrates how quickly you can get data from the DeepHub to a Inf
   - DeepHub: http://localhost:8081/deephub/version
   - DeepHub UI: http://localhost:8081/deephub-ui/buildinfo.json
 - You will need [Node.js](https://nodejs.org/) and [Docker Compose](https://docs.docker.com/compose/install/)
-- Start a system that generates location updates
-  - [Example 1](https://gitlab.deephub.intern/deephub/examples/python-example-1.git) or [Example 2](https://gitlab.deephub.intern/deephub/examples/js-warehouse-operation-example.git)
+- Start a system that generates location updates, e.g. one of the examples provided within this repo (parallel directory):
+  -   "deephub-rest-api-basics" or
+  -   "deephub-warehouse-use-case"
+  
 
 ## Install Node Modules
 
