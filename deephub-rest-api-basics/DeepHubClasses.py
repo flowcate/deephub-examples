@@ -72,7 +72,7 @@ class Fence(JsonSerializable):
 
 
 class Trackable(JsonSerializable):
-    def __init__(self, other=None, polygon=Point(), location_providers=[]):
+    def __init__(self, other=None, polygon=Polygon(), location_providers=[]):
         if type(other) is dict:
             for key, value in other.items():
                 self.__dict__[key] = value
