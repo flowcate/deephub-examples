@@ -79,7 +79,7 @@ class Trackable(JsonSerializable):
         else:
             self.id = 'TrackableId'
             self.type = 'omlox'
-            self.geometry = polygon
+            self.radius = 1
             self.location_providers = location_providers
 
 
