@@ -167,7 +167,8 @@ def setup():
       trackable_url = url + '/trackables/' + trackable_id_pallet
     else:
       print('Found example trackables. Using existing setup.')
-      trackable_id_pallet = [0]
+      trackable_id_pallet = trackables[0]
+      print (trackable_id_pallet)
       trackable_url = url + '/trackables/' + trackable_id_pallet
 
 #
