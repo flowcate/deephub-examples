@@ -109,53 +109,66 @@ def setup():
     global trackable_url
 
     # Check whether the example's entities exist already.
-    if len(rest.get(url + '/zones' + '?foreign_id=' + zone_foreign_id).json()) > 0:
-        print('Found an example zone. Using existing setup.')
-        trackable_id_pallet = rest.get(url + '/trackables').json()[0]
-        trackable_url = url + '/trackables/' + trackable_id_pallet
-        return
+    zones         = rest.get (url + '/zones' + '?foreign_id=' + zone_foreign_id).json() 
+    fences        = rest.get (url + '/fences').json() 
+    trackables    = rest.get (url + '/trackables').json() 
+    providers     = rest.get (url + '/providers').json() 
 
     # Setup the example's zone.
-    zone = dh.Zone()
-    zone.name = 'Area'
-    zone.foreign_id = zone_foreign_id
-    rest.post(url + '/zones', zone.to_json())
+    if (len (zones) < 1):
+      zone = dh.Zone()
+      zone.name = 'Area'
+      zone.foreign_id = zone_foreign_id
+      rest.post(url + '/zones', zone.to_json())
+    else:
+      print('Found an example zone. Using existing setup.')
 
     # Setup the example's fences.
-    delivery_fence = dh.Fence(region=dh.Polygon())
-    delivery_fence.name = 'Delivery'
-    rest.post(url + '/fences', delivery_fence.to_json())
+    if (len (fences) < 1):
+      delivery_fence = dh.Fence(region=dh.Polygon())
+      delivery_fence.name = 'Delivery'
+      rest.post(url + '/fences', delivery_fence.to_json())
 
-    drop_fence = dh.Fence(region=dh.Point())
-    drop_fence.name = 'Drop'
-    drop_fence.radius = 2
-    rest.post(url + '/fences', drop_fence.to_json())
+      drop_fence = dh.Fence(region=dh.Point())
+      drop_fence.name = 'Drop'
+      drop_fence.radius = 2
+      rest.post(url + '/fences', drop_fence.to_json())
+    else:
+      print('Found example fences. Using existing setup.')
 
     # Setup the example's providers for the truck and forklift.
-    provider_truck_gps = dh.LocationProvider(id=provider_id_truck)
-    provider_truck_gps.name = 'Truck GPS'
-    provider_truck_gps.type = 'gps'
-    rest.post(url + '/providers', provider_truck_gps.to_json())
+    if (len (providers) < 1):
+      provider_truck_gps = dh.LocationProvider(id=provider_id_truck)
+      provider_truck_gps.name = 'Truck GPS'
+      provider_truck_gps.type = 'gps'
+      rest.post(url + '/providers', provider_truck_gps.to_json())
 
-    provider_forklift_gps = dh.LocationProvider(id=provider_id_forklift_gps)
-    provider_forklift_gps.name = 'Forklift GPS'
-    provider_forklift_gps.type = 'gps'
-    rest.post(url + '/providers', provider_forklift_gps.to_json())
+      provider_forklift_gps = dh.LocationProvider(id=provider_id_forklift_gps)
+      provider_forklift_gps.name = 'Forklift GPS'
+      provider_forklift_gps.type = 'gps'
+      rest.post(url + '/providers', provider_forklift_gps.to_json())
 
-    provider_forklift_uwb = dh.LocationProvider(id=provider_id_forklift_uwb)
-    provider_forklift_uwb.name = 'Forklift UWB'
-    provider_forklift_uwb.type = 'uwb'
-    rest.post(url + '/providers', provider_forklift_uwb.to_json())
+      provider_forklift_uwb = dh.LocationProvider(id=provider_id_forklift_uwb)
+      provider_forklift_uwb.name = 'Forklift UWB'
+      provider_forklift_uwb.type = 'uwb'
+      rest.post(url + '/providers', provider_forklift_uwb.to_json())
+    else:
+      print('Found example location providers. Using existing setup.')
 
     # Setup the example's trackable.
-    trackable_pallet = dh.Trackable()
-    trackable_pallet.name = 'Pallet'
-    trackable_pallet.radius = 1
-    response = rest.post(url + '/trackables', trackable_pallet.to_json())
-    # Obtain the trackables UUID from the response.
-    trackable_id_pallet = response.json()['id']
-    trackable_url = url + '/trackables/' + trackable_id_pallet
+    if (len (trackables) < 1):
+      trackable_pallet = dh.Trackable()
+      trackable_pallet.name = 'Pallet'
+      trackable_pallet.radius = 1
+      response = rest.post(url + '/trackables', trackable_pallet.to_json())
 
+      # Obtain the trackables UUID from the response.
+      trackable_id_pallet = response.json()['id']
+      trackable_url = url + '/trackables/' + trackable_id_pallet
+    else:
+      print('Found example trackables. Using existing setup.')
+      trackable_id_pallet = trackables[0]
+      trackable_url = url + '/trackables/' + trackable_id_pallet
 
 #
 # Send location updates for the provider with the given id from the given file.
